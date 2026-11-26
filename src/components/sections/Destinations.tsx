@@ -61,7 +61,7 @@ export default function Destinations() {
                     alt={images[i % images.length].alt}
                     fill
                     sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
-                    quality={78}
+                    quality={85}
                     className={cn("object-cover", i === 0 && "lg:object-[78%_50%]")}
                   />
                 </div>

@@ -46,7 +46,7 @@ export default function Services() {
                 alt="AI-generated visual of a generic car decorated with marigold garlands at a wedding entrance"
                 fill
                 sizes="(min-width: 1024px) 50vw, 100vw"
-                quality={80}
+                quality={85}
                 className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-navy/30" aria-hidden="true" />
@@ -90,7 +90,7 @@ export default function Services() {
                         alt={serviceImages[s.slug].alt}
                         fill
                         sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        quality={78}
+                        quality={85}
                         className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
                       />
                     ) : (

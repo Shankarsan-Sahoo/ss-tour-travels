@@ -11,11 +11,11 @@ import Image from "next/image";
 
 const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.14, delayChildren: 0.25 } },
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0 } },
 };
 const item = {
-  hidden: { opacity: 0, y: 34 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.85, ease: [0.21, 0.65, 0.35, 1] as const } },
+  hidden: { opacity: 1, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.21, 0.65, 0.35, 1] as const } },
 };
 
 export default function Hero() {
@@ -28,7 +28,7 @@ export default function Hero() {
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       gsap.to(imageWrapRef.current, {
-        yPercent: 10,
+        yPercent: 4,
         ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -44,8 +44,8 @@ export default function Hero() {
   return (
     <section id="home" ref={sectionRef} className="hero-grain relative flex min-h-[100svh] items-end overflow-hidden bg-navy-deep">
       {/* Cinematic background with GSAP parallax */}
-      <div ref={imageWrapRef} className="absolute inset-x-0 -inset-y-[16%] will-change-transform">
-        <Image src="/images/scenes/road-trip.webp" alt="AI-generated illustration of a decorated car driving a misty Odisha-style hill road at sunrise" fill priority sizes="100vw" quality={80} className="object-cover object-[35%_60%]" />
+      <div ref={imageWrapRef} className="absolute inset-x-0 -inset-y-[6%] will-change-transform">
+        <Image src="/images/scenes/road-trip.webp" alt="AI-generated illustration of a decorated car driving a misty Odisha-style hill road at sunrise" fill priority sizes="100vw" quality={90} className="object-cover object-[35%_60%]" />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-navy-deep/20" aria-hidden="true" />
       <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/70 via-transparent to-transparent" aria-hidden="true" />
