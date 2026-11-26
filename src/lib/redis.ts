@@ -28,5 +28,11 @@ export const KEY_PREFIX = process.env.VERCEL_ENV === "production" || process.env
 export const KEYS = {
   uniqueSet: `${KEY_PREFIX}:visitors`,
   totalViews: `${KEY_PREFIX}:views`,
+  dailySet: (day: string) => `${KEY_PREFIX}:daily:${day}`,
   rateLimit: (day: string, hash: string) => `${KEY_PREFIX}:rl:${day}:${hash}`,
 } as const;
+
+/** Current calendar date in India (IST, UTC+5:30) as YYYY-MM-DD. "Today" resets at midnight IST. */
+export function istDay(now: Date = new Date()): string {
+  return new Date(now.getTime() + 330 * 60_000).toISOString().slice(0, 10);
+}

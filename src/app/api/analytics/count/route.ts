@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getRedis, KEYS } from "@/lib/redis";
+import { getRedis, KEYS, istDay } from "@/lib/redis";
 
 /**
  * GET /api/analytics/count
@@ -15,12 +15,14 @@ export async function GET() {
     return NextResponse.json({ configured: false }, { status: 200 });
   }
   try {
-    const [uniqueVisitors, totalViews] = await Promise.all([
+    const day = istDay();
+    const [uniqueVisitors, todayVisitors, totalViews] = await Promise.all([
       redis.scard(KEYS.uniqueSet),
+      redis.scard(KEYS.dailySet(day)),
       redis.get<number>(KEYS.totalViews),
     ]);
     return NextResponse.json(
-      { configured: true, uniqueVisitors, totalViews: Number(totalViews ?? 0) },
+      { configured: true, day, todayVisitors, uniqueVisitors, totalViews: Number(totalViews ?? 0) },
       { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" } }
     );
   } catch {

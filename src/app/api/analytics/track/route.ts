@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getRedis, KEYS } from "@/lib/redis";
+import { getRedis, KEYS, istDay } from "@/lib/redis";
 import { isBot, isValidVisitorId, rateLimitKey, RATE_LIMITS } from "@/lib/analytics";
 
 /**
@@ -49,8 +49,15 @@ export async function POST(request: Request) {
       return NextResponse.json({ tracked: false }, { status: 200 });
     }
 
-    const [added] = await Promise.all([redis.sadd(KEYS.uniqueSet, vid), redis.incr(KEYS.totalViews)]);
-    return NextResponse.json({ tracked: true, newVisitor: added === 1 }, { status: 200 });
+    // Daily unique set (IST day): a browser counts once per day. Expires on its own.
+    const dailyKey = KEYS.dailySet(istDay());
+    const [added, , addedToday] = await Promise.all([
+      redis.sadd(KEYS.uniqueSet, vid),
+      redis.incr(KEYS.totalViews),
+      redis.sadd(dailyKey, vid),
+    ]);
+    if (addedToday === 1) await redis.expire(dailyKey, 3 * 86_400);
+    return NextResponse.json({ tracked: true, newVisitor: added === 1, newToday: addedToday === 1 }, { status: 200 });
   } catch {
     return NextResponse.json({ tracked: false }, { status: 200 });
   }

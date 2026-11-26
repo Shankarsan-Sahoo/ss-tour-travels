@@ -11,6 +11,7 @@ import { Users } from "lucide-react";
  */
 export default function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
+  const [today, setToday] = useState<number>(0);
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
 
@@ -21,6 +22,7 @@ export default function VisitorCounter() {
       .then((data) => {
         if (!cancelled && data?.configured && typeof data.uniqueVisitors === "number") {
           setCount(data.uniqueVisitors);
+          setToday(typeof data.todayVisitors === "number" ? data.todayVisitors : 0);
         }
       })
       .catch(() => {});
@@ -32,8 +34,20 @@ export default function VisitorCounter() {
   if (count === null) return null;
 
   return (
-    <div ref={ref} className="mt-4 inline-flex items-center gap-3 rounded-xl border border-cream/10 bg-cream/5 px-4 py-3">
+    <div>
+    <div ref={ref} className="mt-4 inline-flex items-center gap-4 rounded-xl border border-cream/10 bg-cream/5 px-4 py-3">
       <Users className="h-4 w-4 text-gold" aria-hidden="true" />
+      <div className="text-xs leading-tight text-cream/60">
+        <motion.span
+          className="block text-lg font-extrabold text-cream tabular-nums"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+        >
+          {inView ? <AnimatedNumber value={today} /> : "0"}
+        </motion.span>
+        Visitors Today
+      </div>
+      <div className="h-8 w-px bg-cream/15" aria-hidden="true" />
       <div className="text-xs leading-tight text-cream/60">
         <motion.span
           className="block text-lg font-extrabold text-cream tabular-nums"
@@ -42,8 +56,10 @@ export default function VisitorCounter() {
         >
           {inView ? <AnimatedNumber value={count} /> : "0"}
         </motion.span>
-        Estimated visitors
+        Total Visitors
       </div>
+    </div>
+    <p className="mt-1 text-[11px] text-cream/40">Estimated &middot; Today resets at midnight IST</p>
     </div>
   );
 }
