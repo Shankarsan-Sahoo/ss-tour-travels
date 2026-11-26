@@ -242,7 +242,7 @@ export default function EnquirySection({ supabaseConfigured }: { supabaseConfigu
                       <div className="grid gap-5 sm:grid-cols-2">
                         <div className="grid gap-2">
                           <Label htmlFor="travelDate">Travel Date</Label>
-                          <Input id="travelDate" type="date" aria-invalid={!!errors.travelDate} {...register("travelDate")} />
+                          <Input id="travelDate" type="date" min={new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" })} aria-invalid={!!errors.travelDate} {...register("travelDate")} />
                           <FieldError message={errors.travelDate?.message} />
                         </div>
                         <div className="grid gap-2">
