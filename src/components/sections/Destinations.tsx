@@ -1,10 +1,16 @@
-import Image from "next/image";
-import { ArrowRight, Check, MapPin } from "lucide-react";
+import { ArrowRight, Check, MapPin, Mountain } from "lucide-react";
 import { cn } from "cn";
 import { destinations } from "@/config/site";
 import { whatsappLink } from "@/lib/whatsapp";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Reveal from "@/components/animations/Reveal";
+
+const tones = [
+  "radial-gradient(120% 90% at 20% 10%, #2b3f8f 0%, #16224f 55%, #0b1430 100%)",
+  "radial-gradient(120% 90% at 80% 10%, #b45309 0%, #3b2a52 55%, #0b1430 100%)",
+  "radial-gradient(120% 90% at 20% 90%, #166534 0%, #14325a 55%, #0b1430 100%)",
+  "radial-gradient(120% 90% at 70% 20%, #1d4ed8 0%, #1b2a63 55%, #0b1430 100%)",
+];
 
 /**
  * Featured destinations in an asymmetric editorial grid:
@@ -37,13 +43,13 @@ export default function Destinations() {
                   i === 0 && "lg:min-h-[540px]"
                 )}
               >
-                <Image
-                  src={d.image}
-                  alt={d.imageAlt}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                />
+                <div
+                  className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                  style={{ background: tones[i % tones.length] }}
+                  aria-hidden="true"
+                >
+                  <Mountain className="absolute -top-6 -right-6 h-56 w-56 text-cream/10" strokeWidth={1} />
+                </div>
                 <div
                   className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/25 to-transparent transition-opacity duration-500 group-hover:opacity-90"
                   aria-hidden="true"

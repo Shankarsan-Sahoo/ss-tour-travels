@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ArrowUpRight, Bus, HandHeart, Heart, MapPin, Route, Trees, Users } from "lucide-react";
 import { cn } from "cn";
 import { services } from "@/config/site";
@@ -35,13 +34,8 @@ export default function Services() {
         <Reveal className="mb-6">
           <article className="group grid overflow-hidden rounded-2xl bg-navy lg:grid-cols-2">
             <div className="relative min-h-[280px] overflow-hidden lg:min-h-[380px]">
-              <Image
-                src={marriage.image}
-                alt={marriage.imageAlt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
-              />
+              <div className="absolute inset-0 bg-[radial-gradient(120%_90%_at_20%_10%,#b45309_0%,#3b2a52_55%,#0b1430_100%)] transition-transform duration-700 group-hover:scale-[1.05]" aria-hidden="true" />
+              <MarriageIcon className="absolute top-1/2 left-1/2 h-40 w-40 -translate-x-1/2 -translate-y-1/2 text-cream/15" strokeWidth={1} aria-hidden="true" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-navy/30" aria-hidden="true" />
             </div>
             <div className="relative flex flex-col justify-center p-8 lg:p-12">
@@ -77,13 +71,8 @@ export default function Services() {
               <Reveal key={s.slug} delay={i * 0.08}>
                 <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-cream transition-shadow duration-300 hover:shadow-[0_18px_44px_-18px_rgba(16,27,61,0.35)]">
                   <div className="relative h-48 overflow-hidden">
-                    <Image
-                      src={s.image}
-                      alt={s.imageAlt}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.06]"
-                    />
+                    <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_85%_0%,#2b3f8f_0%,#16224f_60%,#0b1430_100%)] transition-transform duration-700 group-hover:scale-[1.06]" aria-hidden="true" />
+                    <Icon className="absolute -right-3 -bottom-4 h-32 w-32 text-cream/10" strokeWidth={1} aria-hidden="true" />
                     <span className="absolute top-4 left-4 flex h-10 w-10 items-center justify-center rounded-xl bg-cream/90 text-navy shadow-sm backdrop-blur-sm" aria-hidden="true">
                       <Icon className="h-5 w-5" />
                     </span>

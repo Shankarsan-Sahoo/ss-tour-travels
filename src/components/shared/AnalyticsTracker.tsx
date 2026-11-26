@@ -10,7 +10,7 @@ const SESSION_KEY = "sst_tracked";
  * - Mints a random anonymous ID stored in localStorage (no PII, no cookies).
  * - Sends at most one page-view ping per browser session, so refreshing the
  *   page never inflates the count.
- * - Silently no-ops when Supabase analytics is not configured server-side.
+ * - Silently no-ops when the visitor store is not configured server-side.
  */
 export default function AnalyticsTracker() {
   useEffect(() => {

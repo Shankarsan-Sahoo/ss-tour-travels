@@ -32,13 +32,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} | Tours, Travels & Vehicle Rental in Odisha`,
     description: site.description,
-    images: [{ url: "/images/hero.jpg", width: 2400, height: 1106, alt: "Mountain landscape of Deomali, Odisha" }],
+    images: [{ url: "/images/logo.jpg", width: 960, height: 640, alt: "SS Tour & Travels - Your Journey. Our Passion." }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} | Tours, Travels & Vehicle Rental in Odisha`,
     description: site.description,
-    images: ["/images/hero.jpg"],
+    images: ["/images/logo.jpg"],
   },
   robots: { index: true, follow: true },
 };

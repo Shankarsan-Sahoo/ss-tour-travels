@@ -69,8 +69,6 @@ export interface Destination {
   name: string;
   tagline: string;
   highlights: string[];
-  image: string;
-  imageAlt: string;
 }
 
 export const destinations: Destination[] = [
@@ -79,32 +77,24 @@ export const destinations: Destination[] = [
     name: "Puri",
     tagline: "The sacred coast of Odisha",
     highlights: ["Jagannath Temple", "Puri Beach", "Coastal experiences"],
-    image: "/images/puri-temple.jpg",
-    imageAlt: "Shree Jagannath Temple in Puri illuminated at night",
   },
   {
     slug: "konark",
     name: "Konark",
     tagline: "A wonder carved in stone",
     highlights: ["Sun Temple", "Architectural heritage", "Cultural exploration"],
-    image: "/images/konark.jpg",
-    imageAlt: "The carved stone chariot wheel of the Konark Sun Temple",
   },
   {
     slug: "koraput",
     name: "Koraput",
     tagline: "Valleys, waterfalls and tribal heritage",
     highlights: ["Green valleys", "Waterfalls", "Nature experiences"],
-    image: "/images/koraput.jpg",
-    imageAlt: "Duduma waterfall cascading through the green Koraput valley",
   },
   {
     slug: "deomali",
     name: "Deomali",
     tagline: "The highest peak of Odisha",
     highlights: ["Mountain landscapes", "Scenic viewpoints", "Trekking opportunities"],
-    image: "/images/deomali.jpg",
-    imageAlt: "Rolling mountain landscape at Deomali hill top in Koraput",
   },
 ];
 
@@ -112,8 +102,6 @@ export interface Service {
   slug: string;
   title: string;
   description: string;
-  image: string;
-  imageAlt: string;
   icon: string; // lucide icon key, resolved in the component
   featured?: boolean;
 }
@@ -124,8 +112,6 @@ export const services: Service[] = [
     title: "Picnic Trips",
     description:
       "Easy, comfortable transport for school groups, office outings and family picnics to Odisha's favourite spots.",
-    image: "/images/chilika.jpg",
-    imageAlt: "Boats carrying travellers across the blue waters of Chilika Lake",
     icon: "trees",
   },
   {
@@ -133,8 +119,6 @@ export const services: Service[] = [
     title: "Family Tours",
     description:
       "Relaxed journeys planned around your family - beaches, temples and hill stations at your own pace.",
-    image: "/images/gopalpur.jpg",
-    imageAlt: "The quiet coastline at Gopalpur on Sea, Odisha",
     icon: "users",
   },
   {
@@ -142,8 +126,6 @@ export const services: Service[] = [
     title: "Group Tours",
     description:
       "Coordinated travel for groups of every size, with comfortable vehicles and a single point of contact.",
-    image: "/images/vehicle-coach.jpg",
-    imageAlt: "A comfortable tempo traveller ready for a group journey",
     icon: "bus",
   },
   {
@@ -151,8 +133,6 @@ export const services: Service[] = [
     title: "Marriage Programme Transportation",
     description:
       "Graceful, dependable transportation for wedding days - guest movement, family travel and special arrivals.",
-    image: "/images/wedding-car.jpg",
-    imageAlt: "Lights and decorated stalls at an Odia wedding reception in the evening",
     icon: "heart",
     featured: true,
   },
@@ -161,8 +141,6 @@ export const services: Service[] = [
     title: "Local Transportation",
     description:
       "Reliable city and nearby travel for daily needs, events and errands - on time, every time.",
-    image: "/images/vehicle-bus.jpg",
-    imageAlt: "A tourist coach on an Indian highway",
     icon: "map-pin",
   },
   {
@@ -170,8 +148,6 @@ export const services: Service[] = [
     title: "Outstation Travel",
     description:
       "Long-distance journeys across Odisha and beyond, driven carefully so you arrive rested.",
-    image: "/images/road-scenic.jpg",
-    imageAlt: "A scenic highway winding through the hills of Odisha",
     icon: "route",
   },
 ];
@@ -231,33 +207,3 @@ export const bookingSteps = [
     description: "Finalize your arrangements directly with SS Tour & Travels.",
   },
 ] as const;
-
-export type GalleryCategory = "Destinations" | "Nature" | "Family Travel" | "Wedding Transportation";
-
-export interface GalleryImage {
-  src: string;
-  alt: string;
-  category: GalleryCategory;
-  caption: string;
-}
-
-export const galleryImages: GalleryImage[] = [
-  { src: "/images/puri-beach.jpg", alt: "People enjoying the shoreline at Puri Beach", category: "Destinations", caption: "Puri Beach" },
-  { src: "/images/konark.jpg", alt: "Stone chariot wheel of Konark Sun Temple", category: "Destinations", caption: "Konark Sun Temple" },
-  { src: "/images/waterfall.jpg", alt: "Panoramic view of Barehipani waterfall in Simlipal", category: "Nature", caption: "Barehipani Falls, Simlipal" },
-  { src: "/images/family-picnic.jpg", alt: "A giraffe at Nandankanan Zoological Park, Bhubaneswar", category: "Family Travel", caption: "Nandankanan day out" },
-  { src: "/images/wedding-car.jpg", alt: "Decorated stalls and lights at an Odia wedding reception", category: "Wedding Transportation", caption: "Wedding celebrations" },
-  { src: "/images/deomali.jpg", alt: "Mountain ridges at Deomali", category: "Nature", caption: "Deomali hills" },
-  { src: "/images/chilika.jpg", alt: "Boats on the calm waters of Chilika Lake", category: "Destinations", caption: "Chilika Lake" },
-  { src: "/images/tribal-dance.jpg", alt: "Traditional tribal dance performance in Odisha", category: "Family Travel", caption: "Colours of Odisha" },
-  { src: "/images/daringbadi.jpg", alt: "Misty valleys of Daringbadi in Kandhamal", category: "Nature", caption: "Daringbadi valley" },
-  { src: "/images/temple-detail.jpg", alt: "Intricate 13th century stone carvings at Konark", category: "Destinations", caption: "Konark carvings" },
-  { src: "/images/koraput.jpg", alt: "Duduma waterfall in Koraput district", category: "Nature", caption: "Duduma Falls" },
-  { src: "/images/gopalpur.jpg", alt: "Coastline at Gopalpur on Sea", category: "Destinations", caption: "Gopalpur on Sea" },
-];
-
-/**
- * Photo credits. All photography is from Wikimedia Commons contributors
- * under Creative Commons licenses (see README for the full attribution list).
- */
-export const imageCredits = "Photography: Wikimedia Commons contributors, CC BY-SA licensed. Full credits in the project README.";

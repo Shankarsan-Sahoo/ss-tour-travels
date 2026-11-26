@@ -53,7 +53,7 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <a href="#home" aria-label="SS Tour & Travels - home">
-          <Logo light={!solid} />
+          <Logo />
         </a>
 
         <ul className="hidden items-center gap-1 lg:flex">

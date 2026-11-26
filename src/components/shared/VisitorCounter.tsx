@@ -6,7 +6,8 @@ import { Users } from "lucide-react";
 
 /**
  * Live visitor counter. Fetches aggregate stats from /api/analytics/count.
- * Renders nothing when Supabase is not configured - never a fake number.
+ * Renders nothing when the counter store is unavailable - never a fake number.
+ * Counts unique browsers (an estimate, not unique people).
  */
 export default function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
@@ -31,7 +32,7 @@ export default function VisitorCounter() {
   if (count === null) return null;
 
   return (
-    <div ref={ref} className="mt-6 inline-flex items-center gap-3 rounded-xl border border-cream/10 bg-cream/5 px-4 py-3">
+    <div ref={ref} className="mt-4 inline-flex items-center gap-3 rounded-xl border border-cream/10 bg-cream/5 px-4 py-3">
       <Users className="h-4 w-4 text-gold" aria-hidden="true" />
       <div className="text-xs leading-tight text-cream/60">
         <motion.span
@@ -41,7 +42,7 @@ export default function VisitorCounter() {
         >
           {inView ? <AnimatedNumber value={count} /> : "0"}
         </motion.span>
-        Visitors who explored our website
+        Estimated visitors (unique browsers)
       </div>
     </div>
   );

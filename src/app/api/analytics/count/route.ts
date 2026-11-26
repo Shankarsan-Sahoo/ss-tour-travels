@@ -1,30 +1,29 @@
 import { NextResponse } from "next/server";
-import { getSupabaseAdmin, isSupabaseConfigured } from "@/lib/supabase";
+import { getRedis, KEYS } from "@/lib/redis";
 
 /**
  * GET /api/analytics/count
- * Returns aggregate visitor statistics. No per-visitor data is ever exposed.
- * When Supabase is not configured the route reports configured:false and the
- * counter component hides itself.
+ * Returns aggregate numbers only. The response is cached at the edge for a
+ * minute, so the footer counter costs at most about two Redis commands per
+ * minute no matter how many people open the site.
+ * When Redis is missing or errors, it answers configured:false and the footer
+ * hides the counter: never a made-up number.
  */
 export async function GET() {
-  if (!isSupabaseConfigured) {
+  const redis = getRedis();
+  if (!redis) {
     return NextResponse.json({ configured: false }, { status: 200 });
   }
-
-  const supabase = getSupabaseAdmin()!;
   try {
-    const [{ count: uniqueVisitors, error: e1 }, { count: totalViews, error: e2 }] = await Promise.all([
-      supabase.from("visitors").select("id", { count: "exact", head: true }),
-      supabase.from("page_views").select("id", { count: "exact", head: true }),
+    const [uniqueVisitors, totalViews] = await Promise.all([
+      redis.scard(KEYS.uniqueSet),
+      redis.get<number>(KEYS.totalViews),
     ]);
-    if (e1 || e2) throw e1 ?? e2;
-
     return NextResponse.json(
-      { configured: true, uniqueVisitors: uniqueVisitors ?? 0, totalViews: totalViews ?? 0 },
-      { headers: { "Cache-Control": "no-store" } }
+      { configured: true, uniqueVisitors, totalViews: Number(totalViews ?? 0) },
+      { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300" } }
     );
   } catch {
-    return NextResponse.json({ configured: false }, { status: 200 });
+    return NextResponse.json({ configured: false }, { status: 200, headers: { "Cache-Control": "no-store" } });
   }
 }

@@ -1,5 +1,5 @@
 import { Phone } from "lucide-react";
-import { destinations, imageCredits, services, site } from "@/config/site";
+import { destinations, services, site } from "@/config/site";
 import { whatsappLink } from "@/lib/whatsapp";
 import Logo from "@/components/shared/Logo";
 import VisitorCounter from "@/components/shared/VisitorCounter";
@@ -12,12 +12,11 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-18">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Logo light />
+            <Logo size="lg" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/60">
               Comfortable, dependable travel across Odisha - picnics, family tours, group journeys,
               wedding transportation and outstation trips.
             </p>
-            <VisitorCounter />
           </div>
 
           <nav aria-label="Footer navigation">
@@ -86,10 +85,21 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-cream/10 pt-6">
-          <p className="text-xs leading-relaxed text-cream/40">{imageCredits}</p>
-          <p className="mt-2 text-sm text-cream/60">
+          <p className="text-sm text-cream/60">
             &copy; <CopyrightYear /> {site.name}. All rights reserved.
           </p>
+          <p className="mt-1 text-sm text-cream/60">
+            Developed by{" "}
+            <a
+              href="https://www.linkedin.com/in/shankarsan-sahoo?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-gold-soft underline-offset-4 transition hover:text-gold hover:underline"
+            >
+              Shankarsan Sahoo
+            </a>
+          </p>
+          <VisitorCounter />
         </div>
       </div>
     </footer>

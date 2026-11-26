@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
+import SceneArt from "@/components/shared/SceneArt";
 import { useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -49,30 +49,10 @@ export default function Experience() {
           <div className="relative order-2 lg:order-1">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <div ref={bigRef} className="absolute inset-x-0 -inset-y-[10%] will-change-transform">
-                <Image
-                  src="/images/waterfall.jpg"
-                  alt="Barehipani waterfall falling through the forests of Simlipal, Odisha"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
+                <SceneArt className="h-full w-full" />
               </div>
             </div>
-            <div
-              ref={smallRef}
-              className="absolute -right-3 -bottom-10 hidden w-48 overflow-hidden rounded-xl border-4 border-navy shadow-2xl will-change-transform sm:block lg:w-60"
-            >
-              <div className="relative aspect-[3/4]">
-                <Image
-                  src="/images/temple-detail.jpg"
-                  alt="Intricate stone carvings at the Konark Sun Temple"
-                  fill
-                  sizes="240px"
-                  className="object-cover"
-                />
-              </div>
             </div>
-          </div>
 
           <div className="order-1 lg:order-2">
             <p className="mb-3 text-xs font-bold tracking-[0.28em] text-gold uppercase">The Odisha Experience</p>

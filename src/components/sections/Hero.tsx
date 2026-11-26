@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CalendarCheck, ChevronDown, MapPin, Phone } from "lucide-react";
 import { site } from "@/config/site";
 import { whatsappLink } from "@/lib/whatsapp";
+import SceneArt from "@/components/shared/SceneArt";
 
 const container = {
   hidden: {},
@@ -45,14 +45,7 @@ export default function Hero() {
     <section id="home" ref={sectionRef} className="hero-grain relative flex min-h-[100svh] items-end overflow-hidden bg-navy-deep">
       {/* Cinematic background with GSAP parallax */}
       <div ref={imageWrapRef} className="absolute inset-x-0 -inset-y-[16%] will-change-transform">
-        <Image
-          src="/images/hero.jpg"
-          alt="The mountain landscape of Deomali, Odisha's highest peak, at dawn"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        <SceneArt className="h-full w-full" />
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/55 to-navy-deep/20" aria-hidden="true" />
       <div className="absolute inset-0 bg-gradient-to-r from-navy-deep/70 via-transparent to-transparent" aria-hidden="true" />

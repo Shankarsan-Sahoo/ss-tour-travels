@@ -45,7 +45,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
             className="absolute inset-y-0 right-0 flex w-[84%] max-w-sm flex-col bg-navy shadow-2xl"
           >
             <div className="flex h-[4.5rem] items-center justify-between border-b border-cream/10 px-5">
-              <Logo light />
+              <Logo />
               <button
                 type="button"
                 onClick={onClose}
