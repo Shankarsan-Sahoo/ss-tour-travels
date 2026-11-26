@@ -59,7 +59,7 @@ export default function VisitorCounter() {
         Total Visitors
       </div>
     </div>
-    <p className="mt-1 text-[11px] text-cream/40">Estimated &middot; Today resets at midnight IST</p>
+    <p className="mt-1 text-[11px] text-cream/40">Estimated</p>
     </div>
   );
 }
