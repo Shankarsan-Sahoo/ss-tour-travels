@@ -13,7 +13,7 @@ export default function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
   const [today, setToday] = useState<number>(0);
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
+  const inView = useInView(ref, { once: false, margin: "-40px" });
 
   useEffect(() => {
     let cancelled = false;

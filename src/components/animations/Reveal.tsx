@@ -19,7 +19,7 @@ interface RevealProps {
   as?: "div" | "section" | "figure" | "li" | "span";
 }
 
-/** Scroll-reveal wrapper: fade + rise once when entering the viewport. */
+/** Scroll-reveal wrapper: fade + rise each time it enters the viewport (scrolling down or up). */
 export default function Reveal({ children, className, delay = 0, as = "div" }: RevealProps) {
   const reduceMotion = useReducedMotion();
   const Component = motion[as];
@@ -35,7 +35,7 @@ export default function Reveal({ children, className, delay = 0, as = "div" }: R
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: false, amount: 0.15, margin: "0px 0px -40px 0px" }}
       custom={delay}
     >
       {children}
