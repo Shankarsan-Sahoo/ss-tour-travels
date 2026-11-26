@@ -1,9 +1,17 @@
-import { ArrowRight, Check, MapPin, Mountain } from "lucide-react";
+import { ArrowRight, Check, MapPin } from "lucide-react";
 import { cn } from "cn";
 import { destinations } from "@/config/site";
 import { whatsappLink } from "@/lib/whatsapp";
+import Image from "next/image";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Reveal from "@/components/animations/Reveal";
+
+const images = [
+  { src: "/images/scenes/puri.webp", alt: "AI-generated visual inspired by Puri: a temple beside a busy beach" },
+  { src: "/images/scenes/konark.webp", alt: "AI-generated visual inspired by the Konark Sun Temple" },
+  { src: "/images/scenes/koraput.webp", alt: "AI-generated visual of a forest waterfall inspired by Koraput" },
+  { src: "/images/scenes/deomali.webp", alt: "AI-generated visual of misty hills at sunrise inspired by Deomali" },
+];
 
 const tones = [
   "radial-gradient(120% 90% at 20% 10%, #2b3f8f 0%, #16224f 55%, #0b1430 100%)",
@@ -27,7 +35,7 @@ export default function Destinations() {
           subtitle="From sacred temples to breathtaking mountain landscapes, explore Odisha's most memorable destinations."
         />
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2">
           {destinations.map((d, i) => (
             <Reveal
               key={d.slug}
@@ -48,7 +56,14 @@ export default function Destinations() {
                   style={{ background: tones[i % tones.length] }}
                   aria-hidden="true"
                 >
-                  <Mountain className="absolute -top-6 -right-6 h-56 w-56 text-cream/10" strokeWidth={1} />
+                  <Image
+                    src={images[i % images.length].src}
+                    alt={images[i % images.length].alt}
+                    fill
+                    sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
+                    quality={78}
+                    className={cn("object-cover", i === 0 && "lg:object-[78%_50%]")}
+                  />
                 </div>
                 <div
                   className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/25 to-transparent transition-opacity duration-500 group-hover:opacity-90"
@@ -89,6 +104,9 @@ export default function Destinations() {
         </div>
 
         <Reveal className="mt-8 text-center">
+          <p className="mb-3 text-xs text-fog/80">
+            Images are AI-generated visuals inspired by these places. They are not photographs and may not show exact views.
+          </p>
           <p className="text-sm text-fog">
             Koraput&apos;s valleys, Deomali&apos;s peaks, Chilika&apos;s waters, Daringbadi&apos;s mist -
             and every road in between.{" "}
