@@ -77,7 +77,7 @@ export async function POST(request: Request) {
   }
 
   return NextResponse.json<EnquiryResult>(
-    { ok: true, saved: true, whatsappOnly: false, message: "Enquiry received." },
+    { ok: true, saved: true, whatsappOnly: false, message: "Enquiry saved." },
     { status: 200 }
   );
 }
