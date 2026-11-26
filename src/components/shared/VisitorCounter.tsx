@@ -7,7 +7,7 @@ import { Users } from "lucide-react";
 /**
  * Live visitor counter. Fetches aggregate stats from /api/analytics/count.
  * Renders nothing when the counter store is unavailable - never a fake number.
- * Counts unique browsers (an estimate, not unique people).
+ * Counts unique browsers internally (an estimate, not unique people).
  */
 export default function VisitorCounter() {
   const [count, setCount] = useState<number | null>(null);
@@ -42,7 +42,7 @@ export default function VisitorCounter() {
         >
           {inView ? <AnimatedNumber value={count} /> : "0"}
         </motion.span>
-        Estimated visitors (unique browsers)
+        Estimated visitors
       </div>
     </div>
   );

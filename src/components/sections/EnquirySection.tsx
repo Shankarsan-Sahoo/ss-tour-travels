@@ -162,9 +162,9 @@ export default function EnquirySection({ supabaseConfigured }: { supabaseConfigu
                     <CheckCircle2 className="h-14 w-14 text-emerald-600" aria-hidden="true" />
                     <h3 className="text-2xl font-extrabold text-navy">Enquiry received</h3>
                     <p className="max-w-sm text-sm leading-relaxed text-fog">
-                      Thank you, {done.payload.fullName.split(" ")[0]}. We&apos;ve saved your{" "}
-                      {done.payload.travelType.toLowerCase()} enquiry and will call you back on{" "}
-                      {done.payload.mobile} shortly.
+                      Thank you, {done.payload.fullName.split(" ")[0]}. We&apos;ve received your{" "}
+                      {done.payload.travelType.toLowerCase()} enquiry and will reply on{" "}
+                      {done.payload.mobile}.
                     </p>
                     <p className="text-xs text-fog">
                       In a hurry? Call{" "}

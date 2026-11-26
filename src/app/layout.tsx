@@ -6,6 +6,7 @@ import { site } from "@/config/site";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFloat from "@/components/shared/WhatsAppFloat";
+import BackToTop from "@/components/shared/BackToTop";
 import AnalyticsTracker from "@/components/shared/AnalyticsTracker";
 import "./globals.css";
 
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppFloat />
+        <BackToTop />
         <AnalyticsTracker />
         <Analytics />
         <SpeedInsights />

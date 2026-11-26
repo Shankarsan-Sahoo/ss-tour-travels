@@ -44,7 +44,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
             transition={{ type: "tween", duration: 0.32, ease: [0.32, 0.72, 0, 1] }}
             className="absolute inset-y-0 right-0 flex w-[84%] max-w-sm flex-col bg-navy shadow-2xl"
           >
-            <div className="flex h-[4.5rem] items-center justify-between border-b border-cream/10 px-5">
+            <div className="flex h-20 items-center justify-between border-b border-cream/10 px-5">
               <Logo />
               <button
                 type="button"

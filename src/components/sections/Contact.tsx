@@ -56,7 +56,7 @@ export default function Contact() {
               </span>
               <h3 className="mt-5 text-lg font-extrabold text-navy">Enquire Now</h3>
               <p className="mt-2 text-sm font-semibold text-royal">Online enquiry form</p>
-              <p className="mt-1 text-xs text-fog">Two minutes, and we call you back</p>
+              <p className="mt-1 text-xs text-fog">Two minutes, sent on WhatsApp</p>
             </a>
           </Reveal>
         </div>
