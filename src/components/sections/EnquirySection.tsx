@@ -126,12 +126,11 @@ export default function EnquirySection({ supabaseConfigured }: { supabaseConfigu
                   >
                     <MessageCircle className="h-14 w-14 text-[#25D366]" aria-hidden="true" />
                     <h3 className="text-2xl font-extrabold text-navy">
-                      Almost done, {handedToWhatsapp.payload.fullName.split(" ")[0]}
+                      Ready to send on WhatsApp
                     </h3>
                     <p className="max-w-sm text-sm leading-relaxed text-fog">
-                      WhatsApp should now be open with your enquiry pre-filled. Press send there
-                      to complete it. This website does not store enquiries yet, so the WhatsApp
-                      message is the only copy we receive.
+                      Your enquiry draft is prepared in WhatsApp. Press Send there to reach us.
+                      This website does not store enquiries.
                     </p>
                     <div className="flex flex-col gap-3 sm:flex-row">
                       <a
@@ -162,7 +161,7 @@ export default function EnquirySection({ supabaseConfigured }: { supabaseConfigu
                     <CheckCircle2 className="h-14 w-14 text-emerald-600" aria-hidden="true" />
                     <h3 className="text-2xl font-extrabold text-navy">Enquiry saved</h3>
                     <p className="max-w-sm text-sm leading-relaxed text-fog">
-                      Thank you, {done.payload.fullName.split(" ")[0]}. Your {done.payload.travelType.toLowerCase()} enquiry details are saved. To get it to us, send it on WhatsApp.
+                      Thank you, {done.payload.fullName.split(" ")[0]}. We&apos;ve saved your {done.payload.travelType.toLowerCase()} enquiry.
                     </p>
                     <p className="text-xs text-fog">
                       In a hurry? Call{" "}
