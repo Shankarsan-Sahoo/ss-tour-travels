@@ -1,0 +1,5 @@
+# Optional: deploys the same source to Netlify (free tier allows commercial use).
+# Netlify auto-detects Next.js; this file only makes the build explicit.
+[build]
+  command = "npm run build"
+  publish = ".next"
