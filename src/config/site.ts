@@ -21,6 +21,7 @@ export const site = {
     phoneSecondary: "+91 8144142094",
     phoneSecondaryHref: "tel:+918144142094",
     whatsappPrimary: "918327708096",
+    whatsappDisplay: "+91 8327708096",
   },
 
   /** Canonical site URL. Override with NEXT_PUBLIC_SITE_URL in production. */

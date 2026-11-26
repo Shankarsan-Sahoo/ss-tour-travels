@@ -41,7 +41,7 @@ export default function Contact() {
                 <MessageCircle className="h-6 w-6" aria-hidden="true" />
               </span>
               <h3 className="mt-5 text-lg font-extrabold text-navy">WhatsApp Us</h3>
-              <p className="mt-2 text-sm font-semibold text-royal">{site.contact.phoneSecondary}</p>
+              <p className="mt-2 text-sm font-semibold text-royal">{site.contact.whatsappDisplay}</p>
               <p className="mt-1 text-xs text-fog">Send your dates and destination anytime</p>
             </a>
           </Reveal>
