@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
@@ -30,6 +30,14 @@ type SubmitState =
 
 export default function EnquirySection({ supabaseConfigured }: { supabaseConfigured: boolean }) {
   const [state, setState] = useState<SubmitState>({ status: "idle" });
+  // Computed on the client after mount so the page can be prerendered statically.
+  const [minDate, setMinDate] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    const id = requestAnimationFrame(() =>
+      setMinDate(new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" }))
+    );
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   const {
     register,
@@ -239,7 +247,7 @@ export default function EnquirySection({ supabaseConfigured }: { supabaseConfigu
                       <div className="grid gap-5 sm:grid-cols-2">
                         <div className="grid gap-2">
                           <Label htmlFor="travelDate">Travel Date</Label>
-                          <Input id="travelDate" type="date" min={new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" })} aria-invalid={!!errors.travelDate} {...register("travelDate")} />
+                          <Input id="travelDate" type="date" min={minDate} aria-invalid={!!errors.travelDate} {...register("travelDate")} />
                           <FieldError message={errors.travelDate?.message} />
                         </div>
                         <div className="grid gap-2">
