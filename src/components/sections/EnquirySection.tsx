@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "framer-motion";
-import { CheckCircle2, Loader2, Phone, Send, TriangleAlert } from "lucide-react";
+import { CheckCircle2, Loader2, MessageCircle, Phone, Send, TriangleAlert } from "lucide-react";
 import { site, travelTypes } from "@/config/site";
 import { enquirySchema, type EnquiryInput } from "@/lib/validations";
 import { enquiryWhatsappLink } from "@/lib/whatsapp";
@@ -25,9 +25,10 @@ import Reveal from "@/components/animations/Reveal";
 type SubmitState =
   | { status: "idle" }
   | { status: "submitting" }
-  | { status: "done"; result: EnquiryResult; payload: EnquiryPayload };
+  | { status: "done"; result: EnquiryResult; payload: EnquiryPayload }
+  | { status: "whatsapp"; payload: EnquiryPayload };
 
-export default function EnquirySection() {
+export default function EnquirySection({ supabaseConfigured }: { supabaseConfigured: boolean }) {
   const [state, setState] = useState<SubmitState>({ status: "idle" });
 
   const {
@@ -42,6 +43,13 @@ export default function EnquirySection() {
 
   async function onSubmit(values: EnquiryInput) {
     const payload = values as EnquiryPayload;
+    if (!supabaseConfigured) {
+      // No enquiry storage yet: deliver through WhatsApp only. Open the
+      // pre-filled draft and make clear the user must press send there.
+      window.open(enquiryWhatsappLink(payload), "_blank", "noopener,noreferrer");
+      setState({ status: "whatsapp", payload });
+      return;
+    }
     setState({ status: "submitting" });
     try {
       const res = await fetch("/api/enquiries", {
@@ -66,6 +74,7 @@ export default function EnquirySection() {
   }
 
   const done = state.status === "done" ? state : null;
+  const handedToWhatsapp = state.status === "whatsapp" ? state : null;
 
   return (
     <section id="enquiry" className="bg-navy py-20 lg:py-28" aria-labelledby="enquiry-heading">
@@ -107,7 +116,42 @@ export default function EnquirySection() {
           <Reveal delay={0.12}>
             <div className="rounded-2xl bg-white p-6 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)] sm:p-8">
               <AnimatePresence mode="wait">
-                {done?.result.saved ? (
+                {handedToWhatsapp ? (
+                  <motion.div
+                    key="whatsapp"
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex min-h-[420px] flex-col items-center justify-center gap-4 text-center"
+                    role="status"
+                  >
+                    <MessageCircle className="h-14 w-14 text-[#25D366]" aria-hidden="true" />
+                    <h3 className="text-2xl font-extrabold text-navy">
+                      Almost done, {handedToWhatsapp.payload.fullName.split(" ")[0]}
+                    </h3>
+                    <p className="max-w-sm text-sm leading-relaxed text-fog">
+                      WhatsApp should now be open with your enquiry pre-filled. Press send there
+                      to complete it. This website does not store enquiries yet, so the WhatsApp
+                      message is the only copy we receive.
+                    </p>
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                      <a
+                        href={enquiryWhatsappLink(handedToWhatsapp.payload)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#25D366] px-5 py-3 text-sm font-bold text-white transition hover:brightness-95"
+                      >
+                        Open WhatsApp again
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => setState({ status: "idle" })}
+                        className="inline-flex items-center justify-center rounded-lg border border-navy/20 px-5 py-3 text-sm font-bold text-navy transition hover:bg-navy/5"
+                      >
+                        Edit details
+                      </button>
+                    </div>
+                  </motion.div>
+                ) : done?.result.saved ? (
                   <motion.div
                     key="saved"
                     initial={{ opacity: 0, y: 16 }}
@@ -233,14 +277,19 @@ export default function EnquirySection() {
                             <Loader2 className="animate-spin" data-icon="inline-start" />
                             Sending...
                           </>
-                        ) : (
+                        ) : supabaseConfigured ? (
                           <>
                             <Send data-icon="inline-start" />
                             Submit Enquiry
                           </>
+                        ) : (
+                          <>
+                            <MessageCircle data-icon="inline-start" />
+                            Send enquiry on WhatsApp
+                          </>
                         )}
                       </Button>
-                      {done?.result.whatsappOnly && (
+                      {supabaseConfigured && done?.result.whatsappOnly && (
                         <a
                           href={enquiryWhatsappLink(done.payload)}
                           target="_blank"
@@ -252,7 +301,9 @@ export default function EnquirySection() {
                       )}
                     </div>
                     <p className="text-center text-xs text-fog">
-                      Submitting saves your enquiry with us. You can also complete it on WhatsApp.
+                      {supabaseConfigured
+                        ? "Submitting saves your enquiry with us. You can also complete it on WhatsApp."
+                        : "This opens WhatsApp with your details pre-filled. Press send there to reach us. The website does not store enquiries yet."}
                     </p>
                   </motion.form>
                 )}

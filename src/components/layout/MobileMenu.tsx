@@ -17,7 +17,10 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
   // Render at document.body: the header's backdrop-filter would otherwise
   // contain this fixed overlay to the header box.
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
   if (!mounted) return null;
 
   return createPortal(
