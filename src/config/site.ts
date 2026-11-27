@@ -8,7 +8,7 @@ export const site = {
   shortName: "SS Tours",
   tagline: "Your Journey. Our Passion.",
   description:
-    "SS Tour & Travels offers picnic trips, family tours, group tours, marriage programme transportation, local and outstation travel across Odisha - Puri, Konark, Koraput, Deomali and beyond.",
+    "SS Tour & Travels offers picnic trips, family tours, group tours, marriage programme transportation, local and outstation travel across Odisha. Serving Bahadajhola, Odagaon, Nayagarh and Bhubaneswar, with trips to Puri, Konark, Koraput, Deomali and beyond.",
   industry: "Travel, Tourism, Transportation and Vehicle Rental",
   market: "Odisha, India",
   currency: "INR",
@@ -25,7 +25,7 @@ export const site = {
   },
 
   /** Canonical site URL. Override with NEXT_PUBLIC_SITE_URL in production. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ss-tour-travels.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ss-tour-travels-nine.vercel.app",
 
   nav: [
     { label: "Home", href: "#home" },
@@ -50,8 +50,22 @@ export const site = {
     "Family Tour in Odisha",
     "Picnic Transportation Odisha",
     "Local and Outstation Travel Odisha",
+    "Tour and Travels in Bahadajhola",
+    "Travels in Odagaon Nayagarh",
+    "Taxi and Car Rental in Nayagarh",
+    "Car Rental in Bhubaneswar",
+    "Outstation Cab from Nayagarh",
+    "Wedding Car Rental Nayagarh",
   ],
 } as const;
+
+/** Local service areas, as given by the business owner. */
+export const serviceAreas = [
+  { name: "Bahadajhola", detail: "Local pickups and trips starting from Bahadajhola." },
+  { name: "Odagaon", detail: "Picnic, family and wedding travel from Odagaon." },
+  { name: "Nayagarh", detail: "Local and outstation journeys from Nayagarh district." },
+  { name: "Bhubaneswar", detail: "Trips to and from Bhubaneswar, including outstation tours." },
+] as const;
 
 export const travelTypes = [
   "Picnic",

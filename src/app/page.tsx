@@ -7,6 +7,7 @@ import WhyChooseUs from "@/components/sections/WhyChooseUs";
 import BookingSteps from "@/components/sections/BookingSteps";
 import EnquirySection from "@/components/sections/EnquirySection";
 import { isSupabaseConfigured } from "@/lib/supabase";
+import ServiceAreas from "@/components/sections/ServiceAreas";
 import Contact from "@/components/sections/Contact";
 
 export default function HomePage() {
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Services />
       <Experience />
       <WhyChooseUs />
+      <ServiceAreas />
       <BookingSteps />
       <EnquirySection supabaseConfigured={isSupabaseConfigured} />
       <Contact />

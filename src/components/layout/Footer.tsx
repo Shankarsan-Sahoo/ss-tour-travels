@@ -1,5 +1,5 @@
 import { Phone } from "lucide-react";
-import { destinations, services, site } from "@/config/site";
+import { destinations, serviceAreas, services, site } from "@/config/site";
 import { whatsappLink } from "@/lib/whatsapp";
 import Logo from "@/components/shared/Logo";
 import VisitorCounter from "@/components/shared/VisitorCounter";
@@ -16,6 +16,9 @@ export default function Footer() {
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/60">
               Comfortable, dependable travel across Odisha - picnics, family tours, group journeys,
               wedding transportation and outstation trips.
+            </p>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-cream/60">
+              Serving {serviceAreas.map((a) => a.name).join(", ")}.
             </p>
           </div>
 
