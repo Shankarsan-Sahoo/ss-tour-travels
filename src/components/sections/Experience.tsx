@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import SceneArt from "@/components/shared/SceneArt";
+import Image from "next/image";
 import { useReducedMotion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -49,7 +49,14 @@ export default function Experience() {
           <div className="relative order-2 lg:order-1">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
               <div ref={bigRef} className="absolute inset-x-0 -inset-y-[10%] will-change-transform">
-                <SceneArt className="h-full w-full" />
+                <Image
+                  src="/images/scenes/experience.webp"
+                  alt="AI-generated visual of a traveler with a backpack taking in a sunrise over misty Odisha-style hills"
+                  fill
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  quality={85}
+                  className="object-cover"
+                />
               </div>
             </div>
             </div>

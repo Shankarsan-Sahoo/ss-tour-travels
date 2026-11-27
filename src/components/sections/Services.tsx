@@ -10,6 +10,8 @@ const serviceImages: Record<string, { src: string; alt: string }> = {
   "picnic-trips": { src: "/images/scenes/picnic.webp", alt: "AI-generated visual of friends enjoying a picnic in a park" },
   "family-tours": { src: "/images/scenes/family.webp", alt: "AI-generated visual of a family enjoying a hill viewpoint" },
   "group-tours": { src: "/images/scenes/group.webp", alt: "AI-generated visual of a group of friends watching a sunrise above the clouds" },
+  "local-transportation": { src: "/images/scenes/local-transport.webp", alt: "AI-generated visual of a decorated car on a palm-lined local road" },
+  "outstation-travel": { src: "/images/scenes/outstation.webp", alt: "AI-generated visual of an open highway at sunrise through green countryside" },
 };
 
 const iconMap = {
